@@ -1,7 +1,7 @@
 {
-  "name": "@uniqweber/express-starter",
-  "version": "1.0.2",
-  "description": "CLI to generate a DDD-based ExpressJS starter project",
+  "name": "@uniqweber/express-starter-cli",
+  "version": "1.0.0",
+  "description": "Enterprise-grade Domain-Driven Design (DDD) CLI starter for ExpressJS and TypeScript.",
   "bin": {
     "express-starter": "dist/index.js"
   },
@@ -21,13 +21,21 @@
     "ddd",
     "cli",
     "starter",
-    "boilerplate"
+    "boilerplate",
+    "express-starter-cli",
+    "domain-driven-design",
+    "clean-architecture",
+    "express-generator",
+    "nestjs-alternative",
+    "express-ts-starter",
+    "express-ts",
+    "express-typescript-starter",
+    "expressjs-boilerplate"
   ],
   "author": "Rayan (uniqweber)",
   "license": "MIT",
   "dependencies": {
     "@clack/prompts": "^0.7.0",
-    "@uniqweber/express-starter": "^1.0.0",
     "chalk": "^4.1.2",
     "commander": "^12.0.0",
     "execa": "^5.1.1",

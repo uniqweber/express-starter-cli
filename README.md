@@ -1,8 +1,39 @@
-# ⚡️ @uniqweber/express-starter
+# ⚡️ @uniqweber/express-starter-cli
 
-A ultra-premium, production-ready **Domain-Driven Design (DDD)** boilerplate generator for ExpressJS, inspired by NestJS. 
+[![npm version](https://img.shields.io/npm/v/@uniqweber/express-starter-cli.svg?style=flat-color&color=cyan)](https://www.npmjs.com/package/@uniqweber/express-starter-cli)
+[![NPM Downloads](https://img.shields.io/npm/dm/@uniqweber/express-starter-cli.svg?style=flat-color&color=blue)](https://www.npmjs.com/package/@uniqweber/express-starter-cli)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Even if you are starting your coding journey today, this tool will help you set up and build a massive scale ExpressJS API in literally 5 seconds!
+An enterprise-grade, production-ready **Domain-Driven Design (DDD)** boilerplate generator for **ExpressJS** and **TypeScript**, heavily inspired by NestJS. 
+
+Build highly modular, clean, and scalable Node.js APIs in literally 5 seconds!
+
+---
+
+## 🧠 What is Domain-Driven Design (DDD)?
+
+Traditional Node.js/Express starter boilerplates use the standard **MVC (Model-View-Controller)** pattern. In MVC, all controllers go into a `controllers/` folder, all routes in `routes/`, and all models in `models/`. 
+
+As your application grows, finding code becomes a nightmare because a single feature (e.g., `user`) is scattered across 5 different folders!
+
+### The DDD Approach (Feature-First Architecture)
+**Domain-Driven Design (DDD)** solves this by organizing code by **Business Domain (Features)** instead of technical types. 
+
+In a DDD architecture, everything related to a single domain (like `auth`, `user`, or `payment`) lives inside one isolated folder:
+
+```text
+src/domains/user/
+├── user.route.ts       # Chained Express functional routes
+├── user.controller.ts  # Functional RequestHandlers (pre-wired with try/catch)
+├── user.service.ts     # OOP Class-based service containing business logic
+├── user.interface.ts   # Strict TypeScript Interfaces and DTOs
+└── user.schema.ts      # SQL/NoSQL query storage isolated from logic
+```
+
+### Why is DDD so powerful?
+*   **Scale Without Chaos:** You can have 100 features, and your folder structure stays perfectly clean and easy to navigate.
+*   **True Modularity:** You can easily delete, modify, or rewrite a feature without touching or breaking other parts of the application.
+*   **Functional + OOP Synergy:** This boilerplate utilizes high-performance **functional controllers** for HTTP endpoints and **OOP Class-based services** for clean data mapping and dependency injection.
 
 ---
 
@@ -15,10 +46,10 @@ Run this command using your favorite package manager to scaffold a new project r
 
 | Package Manager | Command |
 | :--- | :--- |
-| **npm** | `npx @uniqweber/express-starter new my-awesome-api` |
-| **pnpm** | `pnpm dlx @uniqweber/express-starter new my-awesome-api` |
-| **yarn** | `yarn dlx @uniqweber/express-starter new my-awesome-api` |
-| **bun** | `bunx @uniqweber/express-starter new my-awesome-api` |
+| **npm** | `npx @uniqweber/express-starter-cli new my-awesome-api` |
+| **pnpm** | `pnpm dlx @uniqweber/express-starter-cli new my-awesome-api` |
+| **yarn** | `yarn dlx @uniqweber/express-starter-cli new my-awesome-api` |
+| **bun** | `bunx @uniqweber/express-starter-cli new my-awesome-api` |
 
 ---
 
@@ -27,10 +58,10 @@ If you build APIs frequently, install it globally on your computer so the `expre
 
 | Package Manager | Install Command | Scaffolding Command |
 | :--- | :--- | :--- |
-| **npm** | `npm install -g @uniqweber/express-starter` | `express-starter new my-awesome-api` |
-| **pnpm** | `pnpm add -g @uniqweber/express-starter` | `express-starter new my-awesome-api` |
-| **yarn** | `yarn global add @uniqweber/express-starter` | `express-starter new my-awesome-api` |
-| **bun** | `bun add -g @uniqweber/express-starter` | `express-starter new my-awesome-api` |
+| **npm** | `npm install -g @uniqweber/express-starter-cli` | `express-starter new my-awesome-api` |
+| **pnpm** | `pnpm add -g @uniqweber/express-starter-cli` | `express-starter new my-awesome-api` |
+| **yarn** | `yarn global add @uniqweber/express-starter-cli` | `express-starter new my-awesome-api` |
+| **bun** | `bun add -g @uniqweber/express-starter-cli` | `express-starter new my-awesome-api` |
 
 ---
 
@@ -109,4 +140,4 @@ To keep your code extremely clean and fast, this CLI has a few rules:
 ## 👤 Author
 *   **Rayan (uniqweber)** - [GitHub](https://github.com/uniqweber)
 
-Enjoy building beautiful, functional APIs! 🚀
+Enjoy building beautiful, functional, and enterprise-grade Express APIs! 🚀
