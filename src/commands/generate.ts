@@ -1,4 +1,4 @@
-import { log } from "@clack/prompts";
+import { log, outro } from "@clack/prompts";
 import chalk from "chalk";
 import fs from "fs-extra";
 import path from "path";
@@ -19,14 +19,17 @@ export async function generateDomain(domainName: string) {
   }
 
   if (!hasPackageJson) {
-    log.error(chalk.red("Could not find a package.json file. Please run this command inside your project directory."));
+    log.error(chalk.hex('#EF4444')("Could not find a package.json file. Please run this command inside your project directory."));
+    console.log();
     process.exit(1);
   }
 
   const domainsDir = path.join(projectRoot, "src/domains");
   if (!(await fs.pathExists(domainsDir))) {
-    log.error(chalk.red("This directory does not appear to be a valid express-starter project."));
-    log.error(chalk.red("Please run the generator inside a project initialized with 'express-starter new'."));
+    log.error(chalk.hex('#EF4444')("This directory does not appear to be a valid express-starter project."));
+    log.error(chalk.hex('#EF4444')("Please run the generator inside a project initialized with 'express-starter new'."));
+    console.log();
+    
     process.exit(1);
   }
 
@@ -36,7 +39,7 @@ export async function generateDomain(domainName: string) {
 
   try {
     if (await fs.pathExists(targetDir)) {
-      log.error(chalk.red(`Domain ${domainName} already exists.`));
+      log.error(chalk.hex('#EF4444')(`Domain ${domainName} already exists.`));
       process.exit(1);
     }
 
@@ -170,19 +173,20 @@ export const get${className}Query = \`SELECT * FROM ${baseName}s WHERE id = $1\`
       schemaContent,
     );
 
-    log.success(chalk.green(`✔ Domain '${domainName}' successfully generated!`));
+    log.success(chalk.hex('#10B981')(`✔ Domain '${domainName}' successfully generated!`));
 
     const nextSteps = `import ${baseName}Router from './domains/${domainName}/${baseName}.route';\napp.use('/${baseName}', ${baseName}Router);`;
 
     const { note } = require("@clack/prompts");
     note(
       nextSteps,
-      chalk.cyan(
+      chalk.hex('#F472B6')(
         `➤ Don't forget to register ${baseName}Router in your src/app.ts:`,
       ),
     );
+    outro(chalk.hex('#EC4899').bold(`🧩 Domain '${domainName}' is ready! Happy coding!`));
   } catch (error: any) {
-    log.error(chalk.red(`Failed to generate domain ${domainName}.`));
+    log.error(chalk.hex('#EF4444')(`Failed to generate domain ${domainName}.`));
     console.error(error.message);
     process.exit(1);
   }

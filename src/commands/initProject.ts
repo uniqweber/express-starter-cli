@@ -32,33 +32,33 @@ export async function initProject(projectName: string) {
     // 2. Create directory
     s.start(`Creating project directory: ${projectName}...`);
     if (await fs.pathExists(targetDir)) {
-      s.stop(chalk.yellow(`Directory ${projectName} already exists.`), 1);
+      s.stop(chalk.hex('#F59E0B')(`Directory ${projectName} already exists.`), 1);
       process.exit(1);
     }
     await fs.mkdirp(targetDir);
-    s.stop(chalk.green(`✔ Created directory: ${projectName}`));
+    s.stop(chalk.hex('#10B981')(`✔ Created directory: ${projectName}`));
 
     // 3. Copy templates
     s.start('Copying template files (Express, TypeScript, Biome, etc.)...');
     const templateDir = path.join(__dirname, '../src/templates/boilerplate');
     
     await copyAndProcessTemplates(templateDir, targetDir, projectName);
-    s.stop(chalk.green('✔ Template files copied successfully.'));
+    s.stop(chalk.hex('#10B981')('✔ Template files copied successfully.'));
 
     // 4. Initialize Git
     s.start('Initializing Git repository...');
     await execa('git', ['init'], { cwd: targetDir });
-    s.stop(chalk.green('✔ Git repository initialized.'));
+    s.stop(chalk.hex('#10B981')('✔ Git repository initialized.'));
 
     // 5. Install dependencies using selected package manager
     const pm = packageManager as string;
     if (pm !== 'none') {
       s.start(`Installing dependencies with ${pm} (this might take a moment)...`);
       await execa(pm, ['install'], { cwd: targetDir, stdio: 'ignore' });
-      s.stop(chalk.green(`✔ Dependencies installed successfully using ${pm}.`));
+      s.stop(chalk.hex('#10B981')(`✔ Dependencies installed successfully using ${pm}.`));
     } else {
       s.start('Skipping dependency installation...');
-      s.stop(chalk.yellow('✔ Skipped dependency installation.'));
+      s.stop(chalk.hex('#F59E0B')('✔ Skipped dependency installation.'));
     }
 
     let runCmd = 'pnpm dev';
@@ -73,12 +73,12 @@ export async function initProject(projectName: string) {
     const nextSteps = `cd ${projectName}
 ${pm === 'none' ? 'pnpm install\npnpm dev' : runCmd}`;
     
-    note(nextSteps, chalk.cyan('➤ Next steps to start your server:'));
+    note(nextSteps, chalk.hex('#A78BFA')('➤ Next steps to start your server:'));
     
-    outro(chalk.cyan.bold(`🚀 Project ${projectName} is ready! Happy coding!`));
+    outro(chalk.hex('#8B5CF6').bold(`🚀 Project '${projectName}' is ready! Happy coding!`));
 
   } catch (error: any) {
-    s.stop(chalk.red('Failed to generate project.'), 1);
+    s.stop(chalk.hex('#EF4444')('Failed to generate project.'), 1);
     console.error(error.message);
     process.exit(1);
   }
