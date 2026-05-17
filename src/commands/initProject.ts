@@ -57,7 +57,8 @@ export async function initProject(projectName: string) {
       await execa(pm, ['install'], { cwd: targetDir, stdio: 'ignore' });
       s.stop(chalk.green(`✔ Dependencies installed successfully using ${pm}.`));
     } else {
-      s.stop(chalk.yellow('⚠ Skipped dependency installation.'));
+      s.start('Skipping dependency installation...');
+      s.stop(chalk.yellow('✔ Skipped dependency installation.'));
     }
 
     let runCmd = 'pnpm dev';
@@ -72,7 +73,7 @@ export async function initProject(projectName: string) {
     const nextSteps = `cd ${projectName}
 ${pm === 'none' ? 'pnpm install\npnpm dev' : runCmd}`;
     
-    note(nextSteps, chalk.blueBright('ℹ Next steps to start your server:'));
+    note(nextSteps, chalk.cyan('➤ Next steps to start your server:'));
     
     outro(chalk.cyan.bold(`🚀 Project ${projectName} is ready! Happy coding!`));
 

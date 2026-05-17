@@ -167,8 +167,8 @@ export const get${className}Query = \`SELECT * FROM ${baseName}s WHERE id = $1\`
     const { note } = require("@clack/prompts");
     note(
       nextSteps,
-      chalk.blueBright(
-        `ℹ Don't forget to register ${baseName}Router in your src/app.ts:`,
+      chalk.cyan(
+        `➤ Don't forget to register ${baseName}Router in your src/app.ts:`,
       ),
     );
   } catch (error: any) {
