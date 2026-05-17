@@ -33,7 +33,7 @@
     "express-typescript-starter",
     "expressjs-boilerplate"
   ],
-  "author": "Rayan (uniqweber)",
+  "author": "Muntasir Ahmed (Rayan)",
   "license": "MIT",
   "dependencies": {
     "@clack/prompts": "^0.7.0",
