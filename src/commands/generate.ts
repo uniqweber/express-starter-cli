@@ -173,7 +173,16 @@ export const get${className}Query = \`SELECT * FROM ${baseName}s WHERE id = $1\`
       schemaContent,
     );
 
-    log.success(chalk.hex('#10B981')(`✔ Domain '${domainName}' successfully generated!`));
+    // Show files generated cleanly
+    console.log(chalk.gray('│'));
+    console.log(`${chalk.gray('│')}  ${chalk.hex('#10B981')('CREATE')} src/domains/${domainName}/${baseName}.interface.ts`);
+    console.log(`${chalk.gray('│')}  ${chalk.hex('#10B981')('CREATE')} src/domains/${domainName}/${baseName}.schema.ts`);
+    console.log(`${chalk.gray('│')}  ${chalk.hex('#10B981')('CREATE')} src/domains/${domainName}/${baseName}.service.ts`);
+    console.log(`${chalk.gray('│')}  ${chalk.hex('#10B981')('CREATE')} src/domains/${domainName}/${baseName}.controller.ts`);
+    console.log(`${chalk.gray('│')}  ${chalk.hex('#10B981')('CREATE')} src/domains/${domainName}/${baseName}.route.ts`);
+    console.log(chalk.gray('│'));
+
+    log.success(chalk.hex('#10B981')(`Domain '${domainName}' successfully generated!`));
 
     const nextSteps = `import ${baseName}Router from './domains/${domainName}/${baseName}.route';\napp.use('/${baseName}', ${baseName}Router);`;
 
@@ -184,7 +193,7 @@ export const get${className}Query = \`SELECT * FROM ${baseName}s WHERE id = $1\`
         `➤ Don't forget to register ${baseName}Router in your src/app.ts:`,
       ),
     );
-    outro(chalk.hex('#8B5CF6').bold(`🧩 Domain '${domainName}' is ready! Happy coding!`));
+    outro(chalk.hex('#64748B')(`🧩 Domain '${domainName}' is ready! Happy coding!`));
   } catch (error: any) {
     log.error(chalk.hex('#EF4444')(`Failed to generate domain ${domainName}.`));
     console.error(error.message);

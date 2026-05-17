@@ -75,7 +75,7 @@ ${pm === 'none' ? 'pnpm install\npnpm dev' : runCmd}`;
     
     note(nextSteps, chalk.hex('#A78BFA')('➤ Next steps to start your server:'));
     
-    outro(chalk.hex('#8B5CF6').bold(`🚀 Project '${projectName}' is ready! Happy coding!`));
+    outro(chalk.hex('#64748B')(`🚀 Project '${projectName}' is ready! Happy coding!`));
 
   } catch (error: any) {
     s.stop(chalk.hex('#EF4444')('Failed to generate project.'), 1);
