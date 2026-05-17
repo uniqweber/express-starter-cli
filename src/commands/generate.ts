@@ -175,13 +175,13 @@ export const get${className}Query = \`SELECT * FROM ${baseName}s WHERE id = $1\`
 
     // Show files generated cleanly
     console.log(chalk.gray('│'));
-    console.log(`${chalk.gray('│')}  ${chalk.hex('#8B5CF6')('Generated Files:')}`);
+    console.log(`${chalk.gray('│')}  ${chalk.hex('#10B981')('Generated Files:')}`);
     console.log(`${chalk.gray('│')}  ${chalk.dim(`- src/domains/${domainName}/${baseName}.interface.ts`)}`);
     console.log(`${chalk.gray('│')}  ${chalk.dim(`- src/domains/${domainName}/${baseName}.schema.ts`)}`);
     console.log(`${chalk.gray('│')}  ${chalk.dim(`- src/domains/${domainName}/${baseName}.service.ts`)}`);
     console.log(`${chalk.gray('│')}  ${chalk.dim(`- src/domains/${domainName}/${baseName}.controller.ts`)}`);
     console.log(`${chalk.gray('│')}  ${chalk.dim(`- src/domains/${domainName}/${baseName}.route.ts`)}`);
-    console.log(chalk.gray('│'));
+    
   
 
     log.success(chalk.hex('#10B981')(`Domain '${domainName}' successfully generated!`));
