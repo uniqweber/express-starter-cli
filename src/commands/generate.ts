@@ -1,4 +1,4 @@
-import { spinner } from "@clack/prompts";
+import { log } from "@clack/prompts";
 import chalk from "chalk";
 import fs from "fs-extra";
 import path from "path";
@@ -20,13 +20,9 @@ export async function generateDomain(domainName: string) {
   const baseName = path.basename(domainName);
   const className = capitalize(baseName);
 
-  const s = spinner();
-
   try {
-    s.start(`Generating domain module: ${domainName}...`);
-
     if (await fs.pathExists(targetDir)) {
-      s.stop(chalk.yellow(`Domain ${domainName} already exists.`), 1);
+      log.error(chalk.red(`Domain ${domainName} already exists.`));
       process.exit(1);
     }
 
@@ -160,7 +156,7 @@ export const get${className}Query = \`SELECT * FROM ${baseName}s WHERE id = $1\`
       schemaContent,
     );
 
-    s.stop(chalk.green(`✔ Domain '${domainName}' successfully generated!`));
+    log.success(chalk.green(`Domain '${domainName}' successfully generated!`));
 
     const nextSteps = `import ${baseName}Router from './domains/${domainName}/${baseName}.route';\n\napp.use('/${baseName}', ${baseName}Router);`;
 
@@ -172,7 +168,7 @@ export const get${className}Query = \`SELECT * FROM ${baseName}s WHERE id = $1\`
       ),
     );
   } catch (error: any) {
-    s.stop(chalk.red(`Failed to generate domain ${domainName}.`), 1);
+    log.error(chalk.red(`Failed to generate domain ${domainName}.`));
     console.error(error.message);
     process.exit(1);
   }
