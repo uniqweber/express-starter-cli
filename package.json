@@ -1,8 +1,7 @@
 {
   "name": "@uniqweber/express-starter",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI to generate a DDD-based ExpressJS starter project",
-  "main": "dist/index.js",
   "bin": {
     "express-starter": "dist/index.js"
   },

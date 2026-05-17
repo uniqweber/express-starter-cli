@@ -6,19 +6,31 @@ Even if you are starting your coding journey today, this tool will help you set 
 
 ---
 
-## 🚀 Quick Start (Create a New Project)
+## 🚀 How to Use (Choose Your Favorite Way)
 
-No installation required! Just run this command in your terminal to create your new project:
+This is a **pure CLI tool**, not a library to be imported in your code. You can run it either directly on-the-fly or install it globally on your system.
 
-```bash
-npx @uniqweber/express-starter new my-awesome-api
-```
+### Option A: Run Instantly (No Installation)
+Run this command using your favorite package manager to scaffold a new project right away:
 
-It will:
-1. Create a folder named `my-awesome-api`.
-2. Copy over our beautiful, premium starter codebase.
-3. Automatically install all dependencies for you using `pnpm`!
-4. Initialize a fresh Git repository.
+| Package Manager | Command |
+| :--- | :--- |
+| **npm** | `npx @uniqweber/express-starter new my-awesome-api` |
+| **pnpm** | `pnpm dlx @uniqweber/express-starter new my-awesome-api` |
+| **yarn** | `yarn dlx @uniqweber/express-starter new my-awesome-api` |
+| **bun** | `bunx @uniqweber/express-starter new my-awesome-api` |
+
+---
+
+### Option B: Install Globally (Recommended for Daily Use)
+If you build APIs frequently, install it globally on your computer so the `express-starter` command is always available at your fingertips:
+
+| Package Manager | Install Command | Scaffolding Command |
+| :--- | :--- | :--- |
+| **npm** | `npm install -g @uniqweber/express-starter` | `express-starter new my-awesome-api` |
+| **pnpm** | `pnpm add -g @uniqweber/express-starter` | `express-starter new my-awesome-api` |
+| **yarn** | `yarn global add @uniqweber/express-starter` | `express-starter new my-awesome-api` |
+| **bun** | `bun add -g @uniqweber/express-starter` | `express-starter new my-awesome-api` |
 
 ---
 
