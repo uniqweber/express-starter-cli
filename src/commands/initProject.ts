@@ -4,6 +4,20 @@ import { spinner, select, isCancel, cancel } from '@clack/prompts';
 import chalk from 'chalk';
 import execa from 'execa';
 
+const DEPENDENCIES = ['express', 'cors', 'helmet', 'dotenv'];
+const DEV_DEPENDENCIES = [
+  'eslint',
+  'eslint-config-prettier',
+  'tsx',
+  'typescript',
+  'typescript-eslint',
+  '@eslint/js',
+  '@types/express',
+  '@types/cors',
+  '@types/node',
+  '@uniqweber/express-starter-cli'
+];
+
 export async function initProject(projectName: string) {
   const targetDir = path.resolve(process.cwd(), projectName);
 
@@ -55,12 +69,14 @@ export async function initProject(projectName: string) {
     if (pm !== 'none') {
       console.log(chalk.gray('│'));
       console.log(`${chalk.gray('│')}  ${chalk.hex('#8B5CF6')('📦 Dependencies:')}`);
-      console.log(`${chalk.gray('│')}     express, cors, helmet, dotenv`);
+      DEPENDENCIES.forEach((dep) => {
+        console.log(`${chalk.gray('│')}    - ${dep}`);
+      });
       console.log(chalk.gray('│'));
       console.log(`${chalk.gray('│')}  ${chalk.hex('#8B5CF6')('🛠  Dev Dependencies:')}`);
-      console.log(`${chalk.gray('│')}     @eslint/js, eslint, eslint-config-prettier, tsx,`);
-      console.log(`${chalk.gray('│')}     typescript, typescript-eslint, @types/node,`);
-      console.log(`${chalk.gray('│')}     @types/express, @types/cors, @uniqweber/express-starter-cli`);
+      DEV_DEPENDENCIES.forEach((dep) => {
+        console.log(`${chalk.gray('│')}    - ${dep}`);
+      });
       console.log(chalk.gray('│'));
 
       s.start(`Installing dependencies with ${pm} (this might take a moment)...`);
