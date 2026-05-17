@@ -5,6 +5,7 @@
   "bin": {
     "express-starter": "dist/index.js"
   },
+  "preferGlobal": true,
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",

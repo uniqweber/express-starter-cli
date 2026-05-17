@@ -1,17 +1,35 @@
 import path from 'path';
 import fs from 'fs-extra';
-import { spinner } from '@clack/prompts';
+import { spinner, select, isCancel, cancel } from '@clack/prompts';
 import chalk from 'chalk';
 import execa from 'execa';
 
 export async function initProject(projectName: string) {
   const targetDir = path.resolve(process.cwd(), projectName);
+
+  // 1. Prompt for package manager first, before showing spinners
+  const packageManager = await select({
+    message: 'Which package manager would you like to use for installing dependencies?',
+    options: [
+      { value: 'pnpm', label: 'pnpm (Recommended)' },
+      { value: 'npm', label: 'npm' },
+      { value: 'yarn', label: 'yarn' },
+      { value: 'bun', label: 'bun' },
+      { value: 'none', label: 'Skip installation (Install manually later)' },
+    ],
+  });
+
+  if (isCancel(packageManager)) {
+    cancel('Operation cancelled.');
+    process.exit(0);
+  }
+
   const s = spinner();
 
   try {
-    const { note, outro, intro } = require('@clack/prompts');
+    const { note, outro } = require('@clack/prompts');
 
-    // 1. Create directory
+    // 2. Create directory
     s.start(`Creating project directory: ${projectName}...`);
     if (await fs.pathExists(targetDir)) {
       s.stop(chalk.yellow(`Directory ${projectName} already exists.`), 1);
@@ -20,27 +38,39 @@ export async function initProject(projectName: string) {
     await fs.mkdirp(targetDir);
     s.stop(chalk.green(`✔ Created directory: ${projectName}`));
 
-    // 2. Copy templates
+    // 3. Copy templates
     s.start('Copying template files (Express, TypeScript, Biome, etc.)...');
     const templateDir = path.join(__dirname, '../src/templates/boilerplate');
     
-    // We will use a helper to copy and process files later if needed, 
-    // for now we'll do a simple copy and rename
     await copyAndProcessTemplates(templateDir, targetDir, projectName);
     s.stop(chalk.green('✔ Template files copied successfully.'));
 
-    // 3. Initialize Git
+    // 4. Initialize Git
     s.start('Initializing Git repository...');
     await execa('git', ['init'], { cwd: targetDir });
     s.stop(chalk.green('✔ Git repository initialized.'));
 
-    // 4. Install dependencies using pnpm
-    s.start('Installing dependencies with pnpm (this might take a moment)...');
-    await execa('pnpm', ['install'], { cwd: targetDir, stdio: 'ignore' });
-    s.stop(chalk.green('✔ Dependencies installed.'));
+    // 5. Install dependencies using selected package manager
+    const pm = packageManager as string;
+    if (pm !== 'none') {
+      s.start(`Installing dependencies with ${pm} (this might take a moment)...`);
+      await execa(pm, ['install'], { cwd: targetDir, stdio: 'ignore' });
+      s.stop(chalk.green(`✔ Dependencies installed successfully using ${pm}.`));
+    } else {
+      s.stop(chalk.yellow('⚠ Skipped dependency installation.'));
+    }
+
+    let runCmd = 'pnpm dev';
+    if (pm === 'npm') {
+      runCmd = 'npm run dev';
+    } else if (pm === 'yarn') {
+      runCmd = 'yarn dev';
+    } else if (pm === 'bun') {
+      runCmd = 'bun dev';
+    }
 
     const nextSteps = `cd ${projectName}
-pnpm dev`;
+${pm === 'none' ? 'pnpm install\npnpm dev' : runCmd}`;
     
     note(nextSteps, 'Next steps');
     
