@@ -68,16 +68,16 @@ export async function initProject(projectName: string) {
     const pm = packageManager as string;
     if (pm !== 'none') {
       console.log(chalk.gray('│'));
-      console.log(`${chalk.gray('│')}  ${chalk.hex('#8B5CF6')('📦 Dependencies:')}`);
+      console.log(`${chalk.gray('│')}  ${chalk.hex('#8B5CF6')('Dependencies:')}`);
       DEPENDENCIES.forEach((dep) => {
-        console.log(`${chalk.gray('│')}    - ${dep}`);
+        console.log(`${chalk.gray('│')}  ${chalk.hex('#64748B')(`- ${dep}`)}`);
       });
       console.log(chalk.gray('│'));
-      console.log(`${chalk.gray('│')}  ${chalk.hex('#8B5CF6')('🛠  Dev Dependencies:')}`);
+      console.log(`${chalk.gray('│')}  ${chalk.hex('#8B5CF6')('Dev Dependencies:')}`);
       DEV_DEPENDENCIES.forEach((dep) => {
-        console.log(`${chalk.gray('│')}    - ${dep}`);
+        console.log(`${chalk.gray('│')}  ${chalk.hex('#64748B')(`- ${dep}`)}`);
       });
-      console.log(chalk.gray('│'));
+      
 
       s.start(`Installing dependencies with ${pm} (this might take a moment)...`);
       await execa(pm, ['install'], { cwd: targetDir, stdio: 'ignore' });
