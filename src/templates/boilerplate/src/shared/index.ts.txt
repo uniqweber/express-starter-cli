@@ -1,0 +1,6 @@
+// Export shared types and interfaces
+export interface BaseResponse<T> {
+  success: boolean;
+  data?: T;
+  message?: string;
+}

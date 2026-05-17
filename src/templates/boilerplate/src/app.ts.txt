@@ -1,0 +1,18 @@
+import express, { Application } from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+
+// Import routers
+import systemRouter from './domains/system/system.route';
+
+const app: Application = express();
+
+app.use(cors());
+app.use(helmet());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Router Connection 
+app.use(systemRouter)
+
+export default app;

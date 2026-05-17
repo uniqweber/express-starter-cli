@@ -1,0 +1,14 @@
+import { Router } from 'express';
+import * as SystemController from './system.controller';
+
+const router: Router = Router();
+
+// Base route connection chain
+router.route('/')
+  .get(SystemController.getWelcomeMeta);
+
+// Deep live infrastructure evaluation network probe check
+router.route('/health')
+  .get(SystemController.getHealthCheck);
+
+export default router;

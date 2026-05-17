@@ -1,0 +1,28 @@
+import pluginJs from "@eslint/js";
+import tseslint from "typescript-eslint";
+import eslintConfigPrettier from "eslint-config-prettier";
+
+export default [
+  // 1. Project target folders definition configuration
+  { 
+    files: ["src/**/*.ts"] 
+  },
+  
+  // 2. Base Rules Integration
+  pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
+  
+  // 3. Custom Performance & Security Layer Rule Mapping
+  {
+    rules: {
+      // "no-console": "warn",                 // Production-e logging track warnings trigger
+      "no-unused-vars": "off",              // Standard JS warning off (TS rule handles this better)
+      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }], // Unused variables are errors, except names starting with _ (like _next)
+      "@typescript-eslint/no-explicit-any": "warn", // 'any' data type error flag warn check up
+      // "require-await": "error"              // Async function must have await keyword rule
+    }
+  },
+
+  // 4. Overwrite configurations to prevent Prettier conflicts
+  eslintConfigPrettier
+]; 
