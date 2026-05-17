@@ -52,7 +52,7 @@ program
   .argument('<domain-name>', 'Name of the domain (e.g. users, products)')
   .action(async (domainName) => {
     console.log();
-    intro(`${chalk.hex('#EC4899').bold('@uniqweber/express-starter-cli')} ${chalk.hex('#64748B')('Generate a new domain module')}`);
+    intro(`${chalk.hex('#8B5CF6').bold('@uniqweber/express-starter-cli')} ${chalk.hex('#64748B')('Generate a new domain module')}`);
     await generateDomain(domainName);
     
   });

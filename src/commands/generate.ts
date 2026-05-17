@@ -180,11 +180,11 @@ export const get${className}Query = \`SELECT * FROM ${baseName}s WHERE id = $1\`
     const { note } = require("@clack/prompts");
     note(
       nextSteps,
-      chalk.hex('#F472B6')(
+      chalk.hex('#A78BFA')(
         `➤ Don't forget to register ${baseName}Router in your src/app.ts:`,
       ),
     );
-    outro(chalk.hex('#EC4899').bold(`🧩 Domain '${domainName}' is ready! Happy coding!`));
+    outro(chalk.hex('#8B5CF6').bold(`🧩 Domain '${domainName}' is ready! Happy coding!`));
   } catch (error: any) {
     log.error(chalk.hex('#EF4444')(`Failed to generate domain ${domainName}.`));
     console.error(error.message);
