@@ -7,13 +7,27 @@ export async function generateDomain(domainName: string) {
   // Find project root by looking for package.json
   let currentDir = process.cwd();
   let projectRoot = currentDir;
+  let hasPackageJson = false;
 
   while (currentDir !== path.parse(currentDir).root) {
     if (await fs.pathExists(path.join(currentDir, "package.json"))) {
       projectRoot = currentDir;
+      hasPackageJson = true;
       break;
     }
     currentDir = path.dirname(currentDir);
+  }
+
+  if (!hasPackageJson) {
+    log.error(chalk.red("Could not find a package.json file. Please run this command inside your project directory."));
+    process.exit(1);
+  }
+
+  const domainsDir = path.join(projectRoot, "src/domains");
+  if (!(await fs.pathExists(domainsDir))) {
+    log.error(chalk.red("This directory does not appear to be a valid express-starter project."));
+    log.error(chalk.red("Please run the generator inside a project initialized with 'express-starter new'."));
+    process.exit(1);
   }
 
   const targetDir = path.resolve(projectRoot, `src/domains/${domainName}`);
@@ -156,9 +170,9 @@ export const get${className}Query = \`SELECT * FROM ${baseName}s WHERE id = $1\`
       schemaContent,
     );
 
-    log.success(chalk.green(`Domain '${domainName}' successfully generated!`));
+    log.success(chalk.green(`✔ Domain '${domainName}' successfully generated!`));
 
-    const nextSteps = `import ${baseName}Router from './domains/${domainName}/${baseName}.route';\n\napp.use('/${baseName}', ${baseName}Router);`;
+    const nextSteps = `import ${baseName}Router from './domains/${domainName}/${baseName}.route';\napp.use('/${baseName}', ${baseName}Router);`;
 
     const { note } = require("@clack/prompts");
     note(
