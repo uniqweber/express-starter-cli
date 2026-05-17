@@ -19,7 +19,7 @@ program
   .argument('[project-name]', 'Name of the project')
   .action(async (projectNameArg) => {
     console.clear();
-    intro(chalk.bgCyan.black.bold(' ⚡️ ExpressTS DDD Starter CLI '));
+    intro(`${chalk.cyan.bold('express-starter-cli')} ${chalk.dim('// feature scaffold')}`);
 
     let projectName = projectNameArg;
 
@@ -50,7 +50,7 @@ program
   .argument('<domain-name>', 'Name of the domain (e.g. users, products)')
   .action(async (domainName) => {
     console.clear();
-    intro(chalk.bgCyan.black.bold(' ⚡️ ExpressTS Code Generator '));
+    intro(`${chalk.magenta.bold('express-starter-cli')} ${chalk.dim('// domain generator')}`);
     await generateDomain(domainName);
     outro(chalk.green('Done!'));
   });

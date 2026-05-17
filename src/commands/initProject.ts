@@ -72,7 +72,7 @@ export async function initProject(projectName: string) {
     const nextSteps = `cd ${projectName}
 ${pm === 'none' ? 'pnpm install\npnpm dev' : runCmd}`;
     
-    note(nextSteps, 'Next steps');
+    note(nextSteps, chalk.blueBright('ℹ Next steps to start your server:'));
     
     outro(chalk.cyan.bold(`🚀 Project ${projectName} is ready! Happy coding!`));
 
