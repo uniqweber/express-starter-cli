@@ -19,7 +19,7 @@ program
   .argument('[project-name]', 'Name of the project')
   .action(async (projectNameArg) => {
     console.clear();
-    intro(`${chalk.cyan.bold('express-starter-cli')} ${chalk.dim('// feature scaffold')}`);
+    intro(`${chalk.cyan.bold('@uniqweber/express-starter-cli')} ${chalk.dim('Generate a new express project')}`);
 
     let projectName = projectNameArg;
 
@@ -50,7 +50,8 @@ program
   .argument('<domain-name>', 'Name of the domain (e.g. users, products)')
   .action(async (domainName) => {
     console.clear();
-    intro(`${chalk.magenta.bold('express-starter-cli')} ${chalk.dim('// domain generator')}`);
+    intro(`${chalk.magenta.bold('@uniqweber/express-starter-cli')} ${chalk.dim('Generate a new domain module')}`);
+    console.log(chalk.gray('│'));
     await generateDomain(domainName);
     outro(chalk.green('Done!'));
   });
