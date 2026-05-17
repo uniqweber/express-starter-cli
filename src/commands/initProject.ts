@@ -70,12 +70,12 @@ export async function initProject(projectName: string) {
       console.log(chalk.gray('│'));
       console.log(`${chalk.gray('│')}  ${chalk.hex('#8B5CF6')('Dependencies:')}`);
       DEPENDENCIES.forEach((dep) => {
-        console.log(`${chalk.gray('│')}  ${chalk.hex('#64748B')(`- ${dep}`)}`);
+        console.log(`${chalk.gray('│')}  ${chalk.dim(`- ${dep}`)}`);
       });
       console.log(chalk.gray('│'));
       console.log(`${chalk.gray('│')}  ${chalk.hex('#8B5CF6')('Dev Dependencies:')}`);
       DEV_DEPENDENCIES.forEach((dep) => {
-        console.log(`${chalk.gray('│')}  ${chalk.hex('#64748B')(`- ${dep}`)}`);
+        console.log(`${chalk.gray('│')}  ${chalk.dim(`- ${dep}`)}`);
       });
       
 
